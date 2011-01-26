@@ -1,0 +1,23 @@
+#!/bin/bash
+#creates a new rails application from a template
+echo "App name? "
+read app
+echo "Template name?"
+read template
+echo "Database adapter?"
+read db
+rvm use 1.8.7
+rvm gemset create $app
+rails new $app -J -T -m ~/OSS/templates/$template.rb -d $db
+case $db in
+	'mysql')
+  	stty -echo
+	read -p "Mysql Password: " passw; echo
+	stty echo
+	mysql_new $app\_dev $passw
+	mysql_new $app\_test $passw
+	;;
+	*)
+  		echo "You'll have to manually create the databases for this db."
+	;;
+esac

@@ -1,0 +1,3 @@
+#!/bin/bash
+#creates a new mysql db
+mysqladmin5 create $1 -u admin -p$2
