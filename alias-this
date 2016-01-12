@@ -1,0 +1,5 @@
+#!/bin/sh
+current_dir=$(pwd)
+alias_str="alias $1=\"cd;cd ${current_dir}\""
+echo "${alias_str}" >> ~/.zshrc
+exec /bin/zsh
